@@ -4,9 +4,12 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import br.com.etechoracio.boa_viagem.enums.TipoViagemEnum;
 import lombok.Getter;
 import lombok.Setter;
 @Getter
@@ -21,8 +24,9 @@ public class Viagem {
 	@Column (name="TX_DESTINO")
 	private String destino;
 	
+	@Enumerated(EnumType.STRING)
 	@Column (name="TP_VIAGEM")
-	private String tipo;
+	private TipoViagemEnum tipo;
 	
 	@Column (name="DT_CHEGADA")
 	private LocalDate chegada;
