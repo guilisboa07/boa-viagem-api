@@ -528,3 +528,20 @@ org.eclipse.core.runtime.CoreException: Cannot determine URI for '/boa-viagem-ap
 	at org.eclipse.equinox.launcher.Main.run(Main.java:1468)
 !SUBENTRY 2 org.eclipse.core.filebuffers 4 0 2022-03-21 07:40:34.792
 !MESSAGE Cannot determine URI for '/boa-viagem-api/src/main/java/br/com/etechoracio/boa_viagem/enums/TipoViagemEnum.java'.
+!SESSION 2022-04-04 07:52:15.591 -----------------------------------------------
+eclipse.buildId=4.12.0.I20190605-1800
+java.version=1.8.0_302
+java.vendor=Temurin
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=pt_BR
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.egit.core 1 0 2022-04-04 07:52:55.621
+!MESSAGE Using Apache MINA sshd as ssh client.
+
+!ENTRY org.eclipse.egit.ui 2 0 2022-04-04 07:53:14.758
+!MESSAGE Warning: The environment variable HOME is not set. The following directory will be used to store the Git
+user global configuration and to define the default location to store repositories: 'C:\Users\Aluno'. If this is
+not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
+EGit might behave differently since they see different configuration options.
+This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
