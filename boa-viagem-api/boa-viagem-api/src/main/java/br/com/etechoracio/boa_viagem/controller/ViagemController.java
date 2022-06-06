@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.etechoracio.boa_viagem.entity.Viagem;
-import br.com.etechoracio.boa_viagem.repository.ViagemRepository;
 import br.com.etechoracio.boa_viagem.service.ViagemService;
 
 @RestController
@@ -30,6 +29,7 @@ public class ViagemController {
 		return service.listarTodos();
 	}
 
+	// READ
 	@GetMapping("/{id}")
 	public ResponseEntity<Viagem> buscarPorId(@PathVariable Long id) {
 		Optional<Viagem> existe = service.buscarPorId(id);
@@ -37,36 +37,36 @@ public class ViagemController {
 			return ResponseEntity.ok(existe.get());
 		}
 		return ResponseEntity.notFound().build();
-
 	}
 
+	// DELETE
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Object> deletarPorId(@PathVariable Long id) {
-
 		boolean existe = service.deletarPorId(id);
 
 		if (existe) {
-			service.deletarPorId(id);
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
+
 	}
 
+	// CREATE
 	@PostMapping
 	public ResponseEntity<Viagem> inserir(@RequestBody Viagem obj) {
 		service.inserir(obj);
 		return ResponseEntity.ok(obj);
 	}
 
+	// UPDATE
 	@PutMapping("/{id}")
 	public ResponseEntity<Viagem> atualizar(@PathVariable Long id, @RequestBody Viagem viagem) {
 		Optional<Viagem> existe = service.atualizar(id, viagem);
-		
-		if (!existe.isPresent()){
+
+		if (!existe.isPresent()) {
 			return ResponseEntity.notFound().build();
 		}
-		return ResponseEntity.ok(viagem);
-		}
-	
-	}
 
+		return ResponseEntity.ok(viagem);
+	}
+}

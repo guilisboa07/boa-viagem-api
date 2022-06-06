@@ -16,36 +16,35 @@ import javax.persistence.Table;
 import br.com.etechoracio.boa_viagem.enums.CategoriaEnum;
 import lombok.Getter;
 import lombok.Setter;
+
 @Getter
 @Setter
 @Entity
-@Table(name="TBL_GASTO")
-
+@Table(name = "TBL_GASTO")
 public class Gasto {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
-	@Column(name="ID_GASTO")
+	@Column(name = "ID_GASTO")
 	private Long id;
-
-	@Column(name="TX_DESCRICAO")
+	
+	@Column(name = "TX_DESCRICAO")
 	private String descricao;
-
-	@Column(name="TX_LOCAL")
+	
+	@Column(name = "TX_LOCAL")
 	private String local;
-
+	
 	@Enumerated(EnumType.STRING)
-	@Column(name="TP_CATEGORIA")
+	@Column(name = "TP_CATEGORIA")
 	private CategoriaEnum categoria;
-
-	@Column(name="DT_GASTO")
+	
+	@Column(name = "DT_GASTO")
 	private LocalDate data;
-
-	@Column(name="VLR_GASTO")
+	
+	@Column(name = "VLR_GASTO")
 	private Double valor;
-
+	
 	@ManyToOne
-	@JoinColumn(name="ID_VIAGEM")
+	@JoinColumn(name = "ID_VIAGEM")
 	private Viagem viagem;
-
 }

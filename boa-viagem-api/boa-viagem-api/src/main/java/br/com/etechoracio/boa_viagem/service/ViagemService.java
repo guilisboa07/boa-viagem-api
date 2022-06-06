@@ -4,48 +4,64 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import br.com.etechoracio.boa_viagem.entity.Gasto;
 import br.com.etechoracio.boa_viagem.entity.Viagem;
+import br.com.etechoracio.boa_viagem.repository.GastoRepository;
 import br.com.etechoracio.boa_viagem.repository.ViagemRepository;
 
+@Service
 public class ViagemService {
 
-@Autowired
-private ViagemRepository repository;
+	@Autowired
+	private ViagemRepository repository;
 
-// Listar Todos
-public List<Viagem> listarTodos() {
-return repository.findAll();
-}
+	@Autowired
+	private GastoRepository gastoRepository;
 
-// Buscar
-public Optional<Viagem> buscarPorId(Long id) {
-return repository.findById(id);
-}
+	// Listar Todos
+	public List<Viagem> listarTodos() {
+		return repository.findAll();
+	}
 
-// Deletar
-public boolean deletarPorId(Long id) {
-boolean existe = repository.existsById(id);
+	// Buscar
+	public Optional<Viagem> buscarPorId(Long id) {
+		return repository.findById(id);
 
-if (existe) {
-repository.deleteById(id);
-}
-return existe;
-}
+	}
 
-// Inserir
-public Viagem inserir(Viagem obj) {
-return repository.save(obj);
-}
+	// Deletar
+	public boolean deletarPorId(Long id) {
+		boolean existe = repository.existsById(id);
 
-// Atualizar Update
-public Optional<Viagem> atualizar(Long id, Viagem Viagem) {
-boolean existe = repository.existsById(id);
+		if (!existe) {
+			return existe;
+		}
 
-if (!existe) {
-return null;
-}
+		List<Gasto> gastos = gastoRepository.findByViagemId(id);
+		if (!gastos.isEmpty()) {
 
-return Optional.of(repository.save(Viagem));
-}
+			gastoRepository.deleteAll(gastos);
+		}
+
+		repository.deleteById(id);
+		return existe;
+	}
+
+	// Inserir
+	public Viagem inserir(Viagem obj) {
+		return repository.save(obj);
+	}
+
+	// Atualizar Update
+	public Optional<Viagem> atualizar(Long id, Viagem Viagem) {
+		boolean existe = repository.existsById(id);
+
+		if (!existe) {
+			return Optional.empty();
+		}
+
+		return Optional.of(repository.save(Viagem));
+	}
 }
